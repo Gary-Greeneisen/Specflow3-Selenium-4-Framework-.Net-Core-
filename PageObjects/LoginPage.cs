@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AcceptanceTests.Common.Application;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
@@ -147,8 +148,8 @@ namespace AcceptanceTests.PageObjects
             /**********************************/
             // set browser to use ImplicitWait 
             /**********************************/
-            browser.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(30);
-            browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            browser.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(RunTimeVars.PAGELOADWAIT);
+            browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(RunTimeVars.WEBDRIVERWAIT);
 
             //Set Default Browser Size
             //DefaultBrowserSize(Width, Height)

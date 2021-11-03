@@ -18,16 +18,21 @@ namespace AcceptanceTests.Features.POC
         }
 
         [Test]
+            //**************************************************************************************
+            //This test uses the IConfiguration Manager methods to read the Json file contents
+            //It does not use an external class file to encapulate the operation
+            //**************************************************************************************
         public void Test()
         {
             //*****************************************************************************
             //Example of using GetSection Method GetSection("Section Name")["Value Name"]
             //to return a Section.Value
             //*****************************************************************************
-            IConfiguration config = new ConfigurationBuilder()             //Have to use this syntax
-                    .AddJsonFile("appSettings.json").Build();   //Have to use this syntax
+            IConfiguration config = new ConfigurationBuilder()      //Have to use this syntax
+                    .AddJsonFile("AppSettings.json").Build();       //Have to use this syntax
 
             //Return a single value element
+            //Note the .Value propertery
             var URL = config.GetSection("URL").Value;
 
             var username = config.GetSection("credentials")["username"];

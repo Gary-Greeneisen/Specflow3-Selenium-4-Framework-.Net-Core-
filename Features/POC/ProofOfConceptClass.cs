@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+using AcceptanceTests.Config;
 
 namespace AcceptanceTests.Features.POC
 {
@@ -13,6 +13,7 @@ namespace AcceptanceTests.Features.POC
         [Test]
         public void TestMethod1()
         {
+
 
         }
 

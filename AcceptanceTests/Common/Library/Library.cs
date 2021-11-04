@@ -1,4 +1,5 @@
 ﻿using AcceptanceTests.Common.Application;
+using AcceptanceTests.Config;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -32,6 +33,24 @@ namespace AcceptanceTests.Common.Library
             var projectDir = Directory.GetParent(dir2).FullName.ToString();
 
             return projectDir;
+        }
+
+        /// <summary>
+        /// Get Data File based on App.config environment
+        /// </summary>
+        /// <returns></returns>
+        public static string GetDataFileDir()
+        {
+
+            //First get the current environment from the Json Environment Vars Section
+            var environment = AppSettings.GetAppEnvironmentValue("Environment");
+
+            //Get project/file dir
+            var projectDir = GetProjectDir();
+            var dataFileDir = projectDir + @"\AcceptanceTests\DataFiles\" + environment + "\\";
+
+            return dataFileDir;
+
         }
 
         public static void SetBrowserSize(IWebDriver browser, System.Drawing.Size browserSize)

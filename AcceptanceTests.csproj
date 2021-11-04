@@ -38,23 +38,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\DataAccess\" />
-    <Folder Include="Common\Exceptions\" />
-    <Folder Include="Common\Utilities\" />
-    <Folder Include="DataFiles\Dev\" />
-    <Folder Include="DataFiles\Example\" />
-    <Folder Include="DataFiles\Local\" />
-    <Folder Include="DataFiles\QA\" />
-    <Folder Include="DataFiles\Prod\" />
-    <Folder Include="Documentation\" />
-    <Folder Include="Features\E2EWorkflowTests\" />
-    <Folder Include="Features\FunctionalTests\" />
-    <Folder Include="Features\StoryCards\" />
-    <Folder Include="Features\Requirements\" />
-    <Folder Include="Interface\" />
-    <Folder Include="packages\" />
-    <Folder Include="packages\" />
-    <Folder Include="Support\" />
+    <Folder Include="AcceptanceTests\Common\DataAccess\" />
+    <Folder Include="AcceptanceTests\Common\Exceptions\" />
+    <Folder Include="AcceptanceTests\DataFiles\Dev\" />
+    <Folder Include="AcceptanceTests\DataFiles\Local\" />
+    <Folder Include="AcceptanceTests\DataFiles\QA\" />
+    <Folder Include="AcceptanceTests\DataFiles\Prod\" />
+    <Folder Include="AcceptanceTests\Documentation\" />
+    <Folder Include="AcceptanceTests\Features\E2EWorkflowTests\" />
+    <Folder Include="AcceptanceTests\Features\FunctionalTests\" />
+    <Folder Include="AcceptanceTests\Features\StoryCards\" />
+    <Folder Include="AcceptanceTests\Features\Requirements\" />
+    <Folder Include="AcceptanceTests\Interface\" />
+    <Folder Include="AcceptanceTests\Support\" />
+    <Folder Include="AcceptanceTests\packages\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace AcceptanceTests.Features.TestFiles
+namespace AcceptanceTests.AcceptanceTests.Features.TestFiles
 {
     using TechTalk.SpecFlow;
     using System;
@@ -35,7 +35,7 @@ namespace AcceptanceTests.Features.TestFiles
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/TestFiles", "Google Search Example", "\tTest example of Specflow and Selenium Webdriver", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AcceptanceTests/Features/TestFiles", "Google Search Example", "\tTest example of Specflow and Selenium Webdriver", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

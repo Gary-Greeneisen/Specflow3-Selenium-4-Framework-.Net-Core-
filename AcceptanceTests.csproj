@@ -50,7 +50,6 @@
     <Folder Include="AcceptanceTests\Features\StoryCards\" />
     <Folder Include="AcceptanceTests\Features\Requirements\" />
     <Folder Include="AcceptanceTests\Interface\" />
-    <Folder Include="AcceptanceTests\Support\" />
     <Folder Include="AcceptanceTests\packages\" />
   </ItemGroup>
 

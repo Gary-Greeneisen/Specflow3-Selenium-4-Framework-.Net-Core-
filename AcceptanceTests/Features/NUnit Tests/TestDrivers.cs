@@ -18,11 +18,6 @@ namespace AcceptanceTests.Features.NUnit_Tests
         [Test]
         public void TestBrowserDrivers()
         {
-        }
-
-        [TearDown]
-        public void EndTest()
-        {
             TestChromeDriverClass TestChrome = new TestChromeDriverClass();
             TestChrome.TestChromeDriver();
 
@@ -34,6 +29,11 @@ namespace AcceptanceTests.Features.NUnit_Tests
 
             //TestIEDriverClass TestIE = new TestIEDriverClass();
             //TestIE.TestIEDriver();
+        }
+
+        [TearDown]
+        public void EndTest()
+        {
 
         }
 

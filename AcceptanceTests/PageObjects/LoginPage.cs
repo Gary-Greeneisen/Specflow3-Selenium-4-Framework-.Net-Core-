@@ -69,7 +69,7 @@ namespace AcceptanceTests.PageObjects
             //fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
         //************************************************************************************************
 
-        public IWebDriver LaunchBrowser(string browserType,string webPage)
+        public IWebDriver LaunchBrowser(string webPage, string browserType = null)
         {
 
             switch(browserType.ToUpper())
@@ -143,6 +143,29 @@ namespace AcceptanceTests.PageObjects
                     isError = true;
                     errorString = "IE Driver not Implemented";
 
+                    break;
+
+                default:
+                    //Headless Browser Testing
+                    var chromeOptionss = new ChromeOptions();
+                    chromeOptionss.AddArguments("headless");
+                    //browser = new ChromeDriver(chromeOptions);
+
+                    //Standard web driver instance
+                    browser = new ChromeDriver();
+
+                    DefaultBrowserSize = browser.Manage().Window.Size;
+                    //DefaultBrowserSize(Width, Height)
+                    //Width = 945   Heigth = 1026
+                    //set browser Height, Width
+                    browserHeight = 1026;
+                    browserHWidth = 1500;
+                    DefaultBrowserSize = browser.Manage().Window.Size;
+                    //DefaultBrowserSize(Width, Height)
+                    //Width = 945   Heigth = 1026
+                    //set browser Height, Width
+                    browserHeight = 1026;
+                    browserHWidth = 1500;
                     break;
             }
             /**********************************/

@@ -55,6 +55,16 @@ namespace AcceptanceTests.Steps
                     //Standard web driver instance
                     browser = new EdgeDriver();
                     break;
+
+                default:
+                    //Headless Browser Testing
+                    var chromeOptions2 = new ChromeOptions();
+                    chromeOptions2.AddArguments("headless");
+                    //browser = new ChromeDriver(chromeOptions);
+
+                    //Standard web driver instance
+                    browser = new ChromeDriver();
+                    break;
             }
 
             //Set implicit wait

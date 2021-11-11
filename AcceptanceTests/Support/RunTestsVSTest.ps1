@@ -21,7 +21,9 @@ dotnet vstest $TestProject /Tests:TestBrowserDrivers /logger:"trx;logfilename=Te
 #Run Specflow tags test
 dotnet vstest $TestProject  /TestCaseFilter:"TestCategory=GoogleSearchFeature" /logger:"trx;logfilename=TestResults2.xml"
 
-
+#Run Both NUnit tests and Specflow tags test
+#dotnet vstest $TestProject  /Tests:TestBrowserDrivers,GoogleSearchFeature /logger:"trx;logfilename=TestResults.xml"
+#read-host “Press ENTER to continue...”
 
 
 

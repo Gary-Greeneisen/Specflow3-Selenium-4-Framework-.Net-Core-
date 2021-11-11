@@ -19,7 +19,9 @@ rem pause
 rem Run Specflow tags test
 dotnet vstest %TestProject%  /TestCaseFilter:"TestCategory=GoogleSearchFeature" /logger:"trx;logfilename=TestResults2.xml"
 
-
+rem Run Both NUnit tests and Specflow tags test
+rem dotnet vstest %TestProject%  /Tests:TestBrowserDrivers,GoogleSearchFeature /logger:"trx;logfilename=TestResults.xml"
+rem pause
 
 
 

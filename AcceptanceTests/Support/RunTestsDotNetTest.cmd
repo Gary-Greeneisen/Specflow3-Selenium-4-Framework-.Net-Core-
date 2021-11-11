@@ -16,7 +16,11 @@ rem Run NUnit test drivers test
 dotnet test %TestProject% --filter TestBrowserDrivers --logger "trx;logfilename=TestResults1.xml"
 
 rem Run Specflow tags test
-dotnet test %TestProject% --filter:"TestCategory=GoogleSearchFeature" --logger "trx;logfilename=TestResults2.xml"
+dotnet test %TestProject% --filter "TestCategory=GoogleSearchFeature" --logger "trx;logfilename=TestResults2.xml"
+
+rem Run NUnit tests and Specflow tags tests
+rem dotnet test %TestProject% --filter "TestBrowserDrivers | TestCategory=GoogleSearchFeature"  --logger "trx;logfilename=TestResults.xml"
+rem pause
 
 
 

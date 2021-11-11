@@ -21,6 +21,10 @@ dotnet test $TestProject --filter TestBrowserDrivers --logger "trx;logfilename=T
 #Run Specflow tags test
 dotnet test $TestProject --filter:"TestCategory=GoogleSearchFeature" --logger "trx;logfilename=TestResults2.xml"
 
+#Run NUnit tests and Specflow tags tests
+#dotnet test $TestProject --filter "TestBrowserDrivers | TestCategory=GoogleSearchFeature"  --logger "trx;logfilename=TestResults.xml"
+#read-host “Press ENTER to continue...”
+
 
 
 

@@ -20,11 +20,13 @@ namespace AcceptanceTests.Features.POC
 
         }
 
+        [Test]
         public void TestMethod2()
         {
 
         }
 
+        [Test]
         public void TestMethod3()
         {
 

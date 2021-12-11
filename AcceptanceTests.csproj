@@ -42,22 +42,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AcceptanceTests\Common\DataAccess\" />
-    <Folder Include="AcceptanceTests\Common\Exceptions\" />
-    <Folder Include="AcceptanceTests\DataFiles\Dev\" />
-    <Folder Include="AcceptanceTests\DataFiles\Local\" />
-    <Folder Include="AcceptanceTests\DataFiles\QA\" />
-    <Folder Include="AcceptanceTests\DataFiles\Prod\" />
-    <Folder Include="AcceptanceTests\Documentation\" />
-    <Folder Include="AcceptanceTests\Features\E2EWorkflowTests\" />
-    <Folder Include="AcceptanceTests\Features\FunctionalTests\" />
-    <Folder Include="AcceptanceTests\Features\StoryCards\" />
-    <Folder Include="AcceptanceTests\Features\Requirements\" />
     <Folder Include="AcceptanceTests\Interface\" />
     <Folder Include="AcceptanceTests\packages\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="AcceptanceTests\DataFiles\Dev\DevAppSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AcceptanceTests\DataFiles\Local\LocalAppSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AcceptanceTests\DataFiles\Prod\ProdAppSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="AcceptanceTests\DataFiles\QA\QAAppSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

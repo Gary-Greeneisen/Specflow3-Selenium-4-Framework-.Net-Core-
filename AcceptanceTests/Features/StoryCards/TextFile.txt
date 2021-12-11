@@ -1,0 +1,1 @@
+﻿Empty text file so GitHub will add the StoryCards dir to the solution

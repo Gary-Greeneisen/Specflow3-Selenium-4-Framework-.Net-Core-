@@ -123,7 +123,7 @@ namespace AcceptanceTests.Features.POC
                 }
 
                 //5. log(Status, Pass/Fail)
-                test.Log(Status.Pass, "Test Passed)");
+                test.Log(Status.Pass, "Test Passed");
 
                 //Add Test file screen shot
                 ExtentReporterInterface.ScreenShot(test,browser, "TestChromePassImage1");
@@ -211,7 +211,7 @@ namespace AcceptanceTests.Features.POC
                 }
 
                 //5. log(Status, Pass/Fail)
-                test.Log(Status.Pass, "Test Passed)");
+                test.Log(Status.Pass, "Test Passed");
 
                 //Add Test file screen shot
                 ExtentReporterInterface.ScreenShot(test, browser, "TestChromeFailImage1");

@@ -61,13 +61,17 @@ namespace AcceptanceTests.Common.Utilities
             var extentConfigPath = runDir + @"\AcceptanceTests\Common\Utilities\Extent-Config.xml";
             htmlReporter.LoadConfig(extentConfigPath);
 
+            /*********** comment out ***********************************
+            //Extent Reports version 3 settings
+            htmlReporter.Configuration().Encoding = "utf-8";
+            htmlReporter.Configuration().DocumentTitle = "Automation Report";
+            htmlReporter.Configuration().ReportName = "Automation Test Results";
+            htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Standard;
+            *********** comment out ***********************************/
+
+            //Extent Reports version 4 settings
             //With Extent Reports version 4 no xml file is installed
             //All configuration are done in code
-            //htmlReporter.config().setEncoding("utf-8");
-            //htmlReporter.config().setDocumentTitle("Automation Report");
-            //htmlReporter.config().setReportName("Automation Test Results");
-            //htmlReporter.config().setTheme(Theme.STANDARD);
-
             htmlReporter.Config.Encoding = "utf-8";
             htmlReporter.Config.DocumentTitle = "Automation Report";
             htmlReporter.Config.ReportName = "Automation Test Results";
@@ -78,7 +82,8 @@ namespace AcceptanceTests.Common.Utilities
             _extentReport = new ExtentReports();
             _extentReport.AttachReporter(htmlReporter);
 
-            //AddS ystem Info
+            //Extent Reports version 3 and 4 settings
+            //Add System Info
             _extentReport.AddSystemInfo("OS", "Windows");
             _extentReport.AddSystemInfo("Host Name", "LocalHost");
             _extentReport.AddSystemInfo("Environment", "QA");
@@ -116,16 +121,41 @@ namespace AcceptanceTests.Common.Utilities
             //var screen = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshot.ToString(), title);
             //test.AddScreenCaptureFromPath(screen.ToString(), title);
 
+
             //So we going to have to do the following
             //1. use Selenium to capture the screenshot
             //2. Save the scrrenshot image to a target location
             //3. then call test.AddScreenCaptureFromPath(path to screenshot, title)
+            //4. No matter which method you call, the image target location is hard coded in 
+            //  report.html
+            //If you delete the target screen shot image, it is erased from the report.html
 
+            /****************** comment out **********************************
+            //Test Extent Reports verion 3/4 Functionality
+            //Capture screen shot
+            Screenshot image = ((ITakesScreenshot)browser).GetScreenshot();
+
+            //Save the screenshot to project Temp dir as the same image name = image.png
+            //The previous image filename will be over written
+            string imageDir = runDir + @"\AcceptanceTests\Temp\";           //Save to Temp dir
+            string imageFileName = imageDir + "image" + ".png";            //File extention = .png
+            image.SaveAsFile(imageFileName, ScreenshotImageFormat.Png);    //Set the file format
+
+            //log with snapshot
+            //var capture is a test to capture the
+            //MediaEntityBuilder.CreateScreenCaptureFromPath(imageFileName, imageName).Build();
+            var capture = MediaEntityBuilder.CreateScreenCaptureFromPath(imageFileName, imageName).Build();
+            string imageTitle = imageName + ".png";
+            test.Fail("details", MediaEntityBuilder.CreateScreenCaptureFromPath(imageFileName, imageTitle).Build());
+            ****************** comment out **********************************/
+
+
+            //Extent Reports verion 4 Functionality
             //*************************************************************************
             // Usage
             // the method test.AddScreenCaptureFromPath(imageFileName, title)
             // insert the image target dir path into the web page
-            // So we need seperate image.jpeg filenames for differtn screen shots
+            // So we need seperate image.jpeg filenames for different screen shots
             //*************************************************************************
             //Capture screen shot
             Screenshot image = ((ITakesScreenshot)browser).GetScreenshot();
@@ -135,12 +165,13 @@ namespace AcceptanceTests.Common.Utilities
             //The previous image filename will be over written
             string imageDir = runDir + @"\AcceptanceTests\Temp\";           //Save to Temp dir
             string imageFileName = imageDir + imageName + ".jpeg";          //File extention = .jpeg
-            image.SaveAsFile(imageFileName, ScreenshotImageFormat.Jpeg);    //Set teh file format
+            image.SaveAsFile(imageFileName, ScreenshotImageFormat.Jpeg);    //Set the file format
 
             //Write to Test Report with the saved image filename = "image"
             //Using the passed in title name
             //Save to Report
             test.AddScreenCaptureFromPath(imageFileName, imageName);
+ 
 
         }
 

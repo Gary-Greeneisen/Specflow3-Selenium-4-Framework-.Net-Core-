@@ -15,7 +15,7 @@ namespace AcceptanceTests.Features.POC
     {
 
          [Test]
-         //Run PowerShell command from C# code
+         //Run PowerShell commands from C# code
         public void RunPowerShellinCode()
         {
             /********************************************

@@ -46,11 +46,14 @@ namespace AcceptanceTests.Common.Utilities
             get
             {
                 //If (The Extent Report instance has not be created
-                // then call the methods to create the instance, and update the call var _extentReport
+                // then call the methods to create the instance, and update the global class var _extentReport
                 if (_extentReport == null)
                 {
                     _reportClass = new ExtentReporterClass();
                     _extentReport = _reportClass.CreateExtentReport();
+
+                    //Delete all previous sceenshot files before the test
+                    //_reportClass.DeleteReportScreenShots();   //Comment out for now Date-12/16/2021
                 }
 
                 return _extentReport;

@@ -8,6 +8,9 @@ using AcceptanceTests.Common.Library;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium;
+//Add references for PowerShell commands
+using System.Collections.ObjectModel;
+using System.Management.Automation;
 
 
 namespace AcceptanceTests.Common.Utilities
@@ -25,6 +28,7 @@ namespace AcceptanceTests.Common.Utilities
         public string reportDir = null;
         public string reportFile = null;
         public string runDir = null;
+        string screenShotDir = null;
 
         //Define a get method to return ExtentReports _report;
         /// <summary>
@@ -52,6 +56,8 @@ namespace AcceptanceTests.Common.Utilities
             //Create the Report file path
             reportDir = runDir + @"\AcceptanceTests\Reports";
             reportFile = runDir + @"\AcceptanceTests\Reports\TestResultsReport.html";
+            //screenShotDir = runDir + @"\AcceptanceTests\Temp";    //Save to Temp dir
+            screenShotDir = reportDir;                              //Save to the Report dir
 
             //Create the Reporter class var from the report dir
             var htmlReporter = new ExtentHtmlReporter(reportFile);
@@ -137,8 +143,8 @@ namespace AcceptanceTests.Common.Utilities
 
             //Save the screenshot to project Temp dir as the same image name = image.png
             //The previous image filename will be over written
-            string imageDir = runDir + @"\AcceptanceTests\Temp\";           //Save to Temp dir
-            string imageFileName = imageDir + "image" + ".png";            //File extention = .png
+            string screenShotDir = runDir + @"\AcceptanceTests\Temp\";           //Save to Temp dir
+            string imageFileName = screenShotDir + "image" + ".png";            //File extention = .png
             image.SaveAsFile(imageFileName, ScreenshotImageFormat.Png);    //Set the file format
 
             //log with snapshot
@@ -163,9 +169,8 @@ namespace AcceptanceTests.Common.Utilities
             //Save the screenshot to project Temp dir
             //The image filenames must be unique
             //The previous image filename will be over written
-            string imageDir = runDir + @"\AcceptanceTests\Temp\";           //Save to Temp dir
-            string imageFileName = imageDir + imageName + ".jpeg";          //File extention = .jpeg
-            image.SaveAsFile(imageFileName, ScreenshotImageFormat.Jpeg);    //Set the file format
+            string imageFileName = screenShotDir + @"\" + imageName + ".jpeg";  //File extention = .jpeg
+            image.SaveAsFile(imageFileName, ScreenshotImageFormat.Jpeg);        //Set the file format
 
             //Write to Test Report with the saved image filename = "image"
             //Using the passed in title name
@@ -175,6 +180,32 @@ namespace AcceptanceTests.Common.Utilities
 
         }
 
+        /// <summary>
+        /// Use PowerShell to delete all Report Screen Shotsfiles
+        /// execute directly from code, instead of calling a script
+        /// This method use the global class var screenShotDir that is set
+        /// when the class is created. Just use the class var screenShotDir when deleting the files
+        /// </summary>
+        public void DeleteReportScreenShots()
+        {
+            //Set the file path to the screen shot dir
+            string filePath = screenShotDir + @"\*.*";
+
+            PowerShell powerShell = PowerShell.Create();
+            //powerShell.AddCommand("Set-ExecutionPolicy")
+            //              .AddParameter("ExecutionPolicy", "remotesigned")
+            //              .AddParameter("Scope", "LocalMachine")
+            //powerShell.Invoke();
+
+            //Create PowerShell command
+            //PowerShell powerShell = PowerShell.Create();
+            powerShell.AddCommand("Remove-Item");
+            //powerShell.AddParameter("Path", @"C:\Test2\*.*");
+            powerShell.AddParameter("Path", filePath);
+            powerShell.AddParameter("Confirm", false);
+            var results = powerShell.Invoke();
+
+        }
 
     }// endpublic class ExtentReporterClass
 

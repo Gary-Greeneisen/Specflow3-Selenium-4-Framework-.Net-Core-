@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AcceptanceTests
 {
-    class UnitTestTemplate
+    class TestPowerShell
     {
 
         [SetUp]

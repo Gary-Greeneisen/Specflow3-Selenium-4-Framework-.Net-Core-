@@ -7,8 +7,8 @@
 #Set the source vars
 $sourcePath = "C:\Test1\Specflow3-Selenium-4-Framework-.Net-Core\AcceptanceTests\PowerShell\"
 $sourceFilename = "TestTextFile1.txt"
-#$targetPath = "C:\Test2\"
-$targetPath = $sourcePath
+$targetPath = "C:\Temp\"
+#$targetPath = $sourcePath
 $targetFilename = "TestTextFile1Output.txt"
 
 #Set the command var

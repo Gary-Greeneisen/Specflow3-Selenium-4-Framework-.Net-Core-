@@ -7,8 +7,8 @@
 #Set the source vars
 $sourceDir = "C:\Test1\Specflow3-Selenium-4-Framework-.Net-Core\AcceptanceTests"
 #Set the target vars
-#$targetDir = "C:\Test2\"
-$targetDir = "C:\Test1\Specflow3-Selenium-4-Framework-.Net-Core\AcceptanceTests\PowerShell\"
+$targetDir = "C:\Temp\"
+#$targetDir = "C:\Test1\Specflow3-Selenium-4-Framework-.Net-Core\AcceptanceTests\PowerShell\"
 $targetFilename = "PowerShellListDirsOutput.txt"
 
 #Set the command var
@@ -19,3 +19,5 @@ $target = $targetDir + $targetFilename
 
 #Run the command and pipe the output to Target Path\filename
 Get-ChildItem -Path $sourceDir -Depth 2 | Out-File -FilePath $target
+
+

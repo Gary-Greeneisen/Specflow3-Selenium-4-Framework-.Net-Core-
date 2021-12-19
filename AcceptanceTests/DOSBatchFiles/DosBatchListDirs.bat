@@ -13,17 +13,17 @@ set sourceDir=C:\Test1\Specflow3-Selenium-4-Framework-.Net-Core\AcceptanceTests\
 echo "sourceDir = "  %sourceDir%
 
 rem Set the target vars
-rem set targetDir=C:\Test2\
-set targetDir=C:\Test1\Specflow3-Selenium-4-Framework-.Net-Core\AcceptanceTests\DOSBatchFiles\
+set targetDir=C:\Temp\
+rem set targetDir=C:\Test1\Specflow3-Selenium-4-Framework-.Net-Core\AcceptanceTests\DOSBatchFiles\
 echo "targetDir = "  %targetDir%
 
 set targetFilename=DosBatchListDirsOutput.txt
 
 rem Set the command var
 rem concatenate two variables in batch script
-set "target=%targetDir%%targetFilename%"
+set "targetPath=%targetDir%%targetFilename%"
 rem set target="C:\Test2\Test.txt"
-echo "target dir\filename= " %target%
+echo "target path\filename= " %targetPath%
 
 rem Run the command and pipe the output to Target Path\filename
-dir %sourceDir% > %target%
+dir %sourceDir% > %targetPath%

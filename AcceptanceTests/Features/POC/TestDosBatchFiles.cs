@@ -24,7 +24,8 @@ namespace AcceptanceTests.Features.POC
             processInfo.CreateNoWindow = true;
             processInfo.UseShellExecute = false;
             processInfo.Arguments = @"/C dir c:\";              //Use this to pass arguments
-            //processInfo.WorkingDirectory = @"C:\";
+            processInfo.WorkingDirectory = @"C:\";
+            
             // *** Redirect the output ***
             processInfo.RedirectStandardError = true;
             processInfo.RedirectStandardOutput = true;
@@ -58,29 +59,27 @@ namespace AcceptanceTests.Features.POC
             var runDir = Library.GetProjectDir();
             var filePath = runDir + @"\" + "AcceptanceTests" + @"\" + "DOSBatchFiles";
             string fileName = "DosBatchListDirs.bat";
-            string path = filePath + @"\" + fileName;
+            string targetBatchFile = filePath + @"\" + fileName;
 
-            int ExitCode;
-            ProcessStartInfo processInfo;
-            Process process;
-
-            //processInfo = new ProcessStartInfo(path,"arg1 arg2 arg3"); //Start batch file WITH arguments
-            processInfo = new ProcessStartInfo(path);                 //Start batch file WITH NO arguments
+            //ProcessStartInfo processInfo = new ProcessStartInfo(path,"arg1 arg2 arg3"); //Start batch file WITH arguments
+            ProcessStartInfo processInfo = new ProcessStartInfo(targetBatchFile);     //Start batch file WITH NO arguments
             processInfo.CreateNoWindow = true;
             processInfo.UseShellExecute = false;
             processInfo.WorkingDirectory = filePath;
+            //processInfo.Arguments = "arg1 arg2 arg3";              //Use this to pass arguments
+  
             // *** Redirect the output ***
             processInfo.RedirectStandardError = true;
             processInfo.RedirectStandardOutput = true;
 
-            process = Process.Start(processInfo);
+            Process process = Process.Start(processInfo);
             process.WaitForExit();
 
             // *** Read the streams ***
             string output = process.StandardOutput.ReadToEnd();
             string error = process.StandardError.ReadToEnd();
 
-            ExitCode = process.ExitCode;
+            int ExitCode = process.ExitCode;
 
             //MessageBox.Show("output>>" + (String.IsNullOrEmpty(output) ? "(none)" : output));
             //MessageBox.Show("error>>" + (String.IsNullOrEmpty(error) ? "(none)" : error));

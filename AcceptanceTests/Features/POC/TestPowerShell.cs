@@ -15,7 +15,9 @@ namespace AcceptanceTests.Features.POC
     {
 
          [Test]
-         //Run PowerShell commands from C# code
+        ///Run PowerShell commands from C# code
+        ///List all dir under the.Net VS project and save contents to an output file#
+        ///
         public void RunPowerShellinCode()
         {
             /********************************************
@@ -23,14 +25,29 @@ namespace AcceptanceTests.Features.POC
                      .AddParameter("This is a Test")
                     .Invoke();
             ********************************************/
+            //Get the project dir (source)
+            var runDir = Library.GetProjectDir();
+            var sourceFilePath = runDir + @"\" + "AcceptanceTests";
+
+            //Set target dir\filename
+            var targetDir = @"C:\temp\";
+            var targetFilename = "PowerShellListDirsOutput.txt";
+            var targetFilePath = targetDir + targetFilename;
 
             //Create PowerShell command
+            //Set the input
             PowerShell psinstance = PowerShell.Create();
-            psinstance.AddCommand("Echo");
-            psinstance.AddParameter("This is a Test");
+            psinstance.AddCommand("Get-ChildItem");
+            psinstance.AddParameter("Path", sourceFilePath);
+            psinstance.AddParameter("Depth", 2);
+
+            //Set output
+            psinstance.AddCommand("Out-File");
+            psinstance.AddParameter("FilePath", targetFilePath);
+
             var results = psinstance.Invoke();
 
-            //Display results in Visual Studio Tests Output Window
+            //Display results in Visual Studio TestExplorer Test Details Summary Output Window
             System.Diagnostics.Debug.Write(results.ToString());
             //TestContext.Progress.WriteLine(results.ToString());
 
@@ -54,33 +71,58 @@ namespace AcceptanceTests.Features.POC
 
         [Test]
 
-        //invoke PowerShell process from C# code and pass command as argument.
-        //See below example how execute PowerShell process from code and pass cmdlet as argument.
+        ///invoke PowerShell process from C# code and pass command as argument.
+        ///This example uses echo command
+        /// or Executes PowerShell script
+
         public void RunPowerShellWindow()
         {
+            //Get the project dir
+            var runDir = Library.GetProjectDir();
+            var filePath = runDir + @"\" + "AcceptanceTests" + @"\" + "PowerShell";
+            //Powershell script to read external file contents and save contents to an output file#
+            string fileName = "PowerShellReadFile.ps1";
+
+            //Powershell script to List all dir under the .Net VS project and save contents to an output file#
+            //string fileName = "PowerShellListDirs.ps1";
+
+            string powerShellScript = filePath + @"\" + fileName;
+
             //execute powershell cmdlets or scripts using command arguments as process
             ProcessStartInfo processInfo = new ProcessStartInfo();
-            processInfo.FileName = @"powershell.exe";
+            processInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            processInfo.FileName = "powershell.exe";
+            processInfo.CreateNoWindow = true;
+            processInfo.UseShellExecute = false;
             //execute powershell script using script file
             //processInfo.Arguments = @"& {c:\temp\Get-EventLog.ps1}";
-            //execute powershell command
-            processInfo.Arguments = @"echo 'This is a Test'";
+            //Executes PowerShell script
+            processInfo.Arguments = powerShellScript;
+
+            //Use echo command
+            //processInfo.Arguments = "echo This is a Test";      //Use this to pass arguments
+
+            processInfo.WorkingDirectory = @"C:\";
+            // *** Redirect the output ***
             processInfo.RedirectStandardError = true;
             processInfo.RedirectStandardOutput = true;
-            processInfo.UseShellExecute = false;
-            processInfo.CreateNoWindow = true;
 
             //start powershell process using process start info
-            Process process = new Process();
-            process.StartInfo = processInfo;
-            process.Start();
+            Process process = Process.Start(processInfo);
+            process.WaitForExit();
+
+            // *** Read the streams ***
+            string output = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
+
+            int ExitCode = process.ExitCode;
 
             //read output
-            Console.WriteLine("Output - {0}", process.StandardOutput.ReadToEnd());
+            //Console.WriteLine("Output - {0}", process.StandardOutput.ReadToEnd());
             //read errors
-            Console.WriteLine("Errors - {0}", process.StandardError.ReadToEnd());
-            Console.Read();
+            //Console.WriteLine("Errors - {0}", process.StandardError.ReadToEnd());
 
+            process.Close();
         }
 
         [Test]
@@ -113,13 +155,16 @@ namespace AcceptanceTests.Features.POC
             //Get the project dir
             var runDir = Library.GetProjectDir();
             var filePath = runDir +  @"\"  + "AcceptanceTests" + @"\" + "PowerShell";
+            //Powershell script to read external file contents and save contents to an output file#
             //string fileName = "PowerShellReadFile.ps1";
+
+            //Powershell script to List all dir under the .Net VS project and save contents to an output file#
             string fileName = "PowerShellListDirs.ps1";
             
-            string path = filePath + @"\" + fileName;
+            string powerShellScript = filePath + @"\" + fileName;
 
             PowerShell powerShell = PowerShell.Create();
-            powerShell.AddScript(System.IO.File.ReadAllText(path));
+            powerShell.AddScript(System.IO.File.ReadAllText(powerShellScript));
             Collection<PSObject> PSOutput = powerShell.Invoke();
 
         }

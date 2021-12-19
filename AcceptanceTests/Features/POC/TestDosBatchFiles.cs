@@ -61,8 +61,10 @@ namespace AcceptanceTests.Features.POC
             string fileName = "DosBatchListDirs.bat";
             string targetBatchFile = filePath + @"\" + fileName;
 
-            //ProcessStartInfo processInfo = new ProcessStartInfo(path,"arg1 arg2 arg3"); //Start batch file WITH arguments
-            ProcessStartInfo processInfo = new ProcessStartInfo(targetBatchFile);     //Start batch file WITH NO arguments
+            //ProcessStartInfo processInfo = new ProcessStartInfo(targetBatchFile,"arg1 arg2 arg3"); //Start batch file WITH arguments
+            //ProcessStartInfo processInfo = new ProcessStartInfo(targetBatchFile);     //Start batch file WITH NO arguments
+            ProcessStartInfo processInfo = new ProcessStartInfo();      //Start with no parameters
+            processInfo.FileName = targetBatchFile;                                                     
             processInfo.CreateNoWindow = true;
             processInfo.UseShellExecute = false;
             processInfo.WorkingDirectory = filePath;

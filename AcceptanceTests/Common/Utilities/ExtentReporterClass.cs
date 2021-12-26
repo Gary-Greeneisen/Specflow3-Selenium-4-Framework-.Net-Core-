@@ -10,7 +10,7 @@ using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium;
 //Add references for PowerShell commands
 using System.Collections.ObjectModel;
-using System.Management.Automation;
+//using System.Management.Automation;
 
 
 namespace AcceptanceTests.Common.Utilities
@@ -188,6 +188,11 @@ namespace AcceptanceTests.Common.Utilities
         /// </summary>
         public void DeleteReportScreenShots()
         {
+            //Date - 12/26/2021 added a console project to the exisitng solution
+            //addded Web Services Microsoft.AspNet.WebApi.Client package to the solution
+            //There is some combatability issues, backed out all the changes, now have compile issues
+
+            /****************** comment out ****************************************
             //Set the file path to the screen shot dir
             string filePath = screenShotDir + @"\*.*";
 
@@ -204,6 +209,7 @@ namespace AcceptanceTests.Common.Utilities
             powerShell.AddParameter("Path", filePath);
             powerShell.AddParameter("Confirm", false);
             var results = powerShell.Invoke();
+            ****************** comment out ****************************************/
 
         }
 

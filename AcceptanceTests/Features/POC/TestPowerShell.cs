@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-//using System.Management.Automation;
+using System.Management.Automation;
 using System.Diagnostics;
 using AcceptanceTests.Common.Library;
 
@@ -29,8 +29,11 @@ namespace AcceptanceTests.Features.POC
             //Date - 12/26/2021 added a console project to the exisitng solution
             //addded Web Services Microsoft.AspNet.WebApi.Client package to the solution
             //There is some combatability issues, backed out all the changes, now have compile issues
+            //Date - 12/26/2021 Found the problem
+            // Uninstalled Microsoft.PowerShell.SDK latest version- 7.2.1
+            //Re-installed Microsoft.PowerShell.SDK previous version- 7.1.5
 
-            /****************** comment out ****************************************
+            /****************** comment out ****************************************/
             //Get the project dir (source)
             var runDir = Library.GetProjectDir();
             var sourceFilePath = runDir + @"\" + "AcceptanceTests";
@@ -72,7 +75,7 @@ namespace AcceptanceTests.Features.POC
                 }
             }
             
-             ****************** comment out ****************************************/
+             /****************** comment out ****************************************/
 
         }
 
@@ -165,9 +168,11 @@ namespace AcceptanceTests.Features.POC
             //Date - 12/26/2021 added a console project to the exisitng solution
             //addded Web Services Microsoft.AspNet.WebApi.Client package to the solution
             //There is some combatability issues, backed out all the changes, now have compile issues
+            //Date - 12/26/2021 Found the problem
+            // Uninstalled Microsoft.PowerShell.SDK latest version- 7.2.1
+            //Re-installed Microsoft.PowerShell.SDK previous version- 7.1.5
+            /****************** comment out ****************************************/
 
-            /****************** comment out ****************************************
-            
             //Get the project dir
             var runDir = Library.GetProjectDir();
             var filePath = runDir +  @"\"  + "AcceptanceTests" + @"\" + "PowerShell";
@@ -183,7 +188,7 @@ namespace AcceptanceTests.Features.POC
             powerShell.AddScript(System.IO.File.ReadAllText(powerShellScript));
             Collection<PSObject> PSOutput = powerShell.Invoke();
 
-            ****************** comment out ****************************************/
+            /****************** comment out ****************************************/
 
         }
 
